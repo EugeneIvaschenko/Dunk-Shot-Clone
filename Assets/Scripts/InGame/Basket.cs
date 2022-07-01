@@ -30,7 +30,7 @@ public class Basket : MonoBehaviour {
         BallThrowed?.Invoke(this);
     }
 
-    public void Aim(Vector2 direction) {
+    public void OnAiming(Vector2 direction) {
         transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector3.up, direction));
     }
 
