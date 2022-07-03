@@ -6,7 +6,7 @@ public class Ball : MonoBehaviour {
     private Rigidbody2D rb;
     private TrajectoryRenderer tr;
 
-    private void Start() {
+    private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         rb.simulated = false;
         tr = GetComponent<TrajectoryRenderer>();

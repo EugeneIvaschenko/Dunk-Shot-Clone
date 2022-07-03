@@ -28,18 +28,35 @@ public class TrajectoryRenderer : MonoBehaviour {
     public Vector3[] GetTrajectory(Rigidbody2D rb, Vector3 pos, Vector3 velocity, uint steps) {
         Vector3[] result = new Vector3[steps];
 
-        float timestep = Time.fixedDeltaTime / Physics2D.velocityIterations;
+        float timestep = Time.fixedDeltaTime;
         Vector3 gravityAccel = rb.gravityScale * timestep * timestep * Physics2D.gravity;
         
         float drag = 1f - timestep * rb.drag;
         Vector3 moveStep = velocity * timestep;
+        Vector3 newPos = pos;
 
+        RaycastHit2D[] hits = new RaycastHit2D[1];
+        ContactFilter2D filter = new ContactFilter2D {
+            layerMask = LayerMask.GetMask("Obstacles")
+        };
+        float bounciness = (1 - rb.sharedMaterial.bounciness) / 1.3f + rb.sharedMaterial.bounciness; //crutch for bounciness simulation
         for (int i = 0; i < steps; i++) {
             moveStep += gravityAccel;
             moveStep *= drag;
-            pos += moveStep;
-            result[i] = pos;
+
+            rb.position = newPos;
+            int hitCount = rb.Cast(moveStep, filter, hits, moveStep.magnitude);
+            if (hitCount > 0) {
+                moveStep = Vector2.Reflect(moveStep, hits[0].normal) * bounciness;
+                
+            }
+
+            newPos += moveStep;
+            result[i] = newPos;
+
         }
+
+        rb.position = pos;
 
         return result;
     }

@@ -76,7 +76,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5766343029625839345}
   - component: {fileID: 5766343029625839346}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RingCollider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 5766343029770235016}
   - component: {fileID: 5766343029770235017}
   - component: {fileID: 2018025951743078127}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NetCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,8 +139,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5766343029770235031}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009000014, y: -0.223, z: 0}
-  m_LocalScale: {x: 0.53000003, y: 0.18, z: 1}
+  m_LocalPosition: {x: -0.009000014, y: -0.197, z: 0}
+  m_LocalScale: {x: 0.53000003, y: 0.09, z: 1}
   m_Children: []
   m_Father: {fileID: 6826848686809251440}
   m_RootOrder: 5
@@ -322,7 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5766343030739620214}
   - component: {fileID: 5766343030739620215}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RingCollider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 5766343031118553587}
   - component: {fileID: 5766343031118553589}
   - component: {fileID: 5766343031118553588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Net
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,8 +385,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5766343031118553586}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.15300001, z: 0}
-  m_LocalScale: {x: 0.9948439, y: 0.33, z: 1}
+  m_LocalPosition: {x: 0, y: -0.1748, z: 0}
+  m_LocalScale: {x: 0.9948439, y: 0.373659, z: 1}
   m_Children: []
   m_Father: {fileID: 6826848686809251440}
   m_RootOrder: 4

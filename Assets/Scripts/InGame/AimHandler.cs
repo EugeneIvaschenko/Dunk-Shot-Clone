@@ -11,7 +11,7 @@ public class AimHandler : MonoBehaviour {
     public event Action<Vector2> AimReleased;
 
     private void Update() {
-        if(Gameplay.CanThrow)
+        if(BasketManager.CanThrow)
             InputRead();
     }
 
