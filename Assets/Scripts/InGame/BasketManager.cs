@@ -1,20 +1,20 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Random = UnityEngine.Random;
 
 public class BasketManager : MonoBehaviour {
     [SerializeField] private Basket basketPrefab;
     [SerializeField] private Score score;
     [SerializeField] private AimHandler aim;
     [SerializeField] private Transform startBasketPos;
+    [SerializeField] private Star starPrefab;
     [Header("Baskets Spawn Settings")]
     [SerializeField] private float basketXRange = 2;
     [SerializeField] private float minYBasketOffset = 1;
     [SerializeField] private float maxYBasketOffset = 4;
     [SerializeField, Min(3)] private int maxBasketsOnScene = 5;
     [SerializeField, Min(2)] private int reachTopBasketsForDeleting = 3;
+    [SerializeField, Min(2)] private int starSpawnOneFor = 5;
 
     private Vector3 lastBasketPos;
     private Basket currentBasket;
@@ -48,12 +48,22 @@ public class BasketManager : MonoBehaviour {
             currentBasket = basket;
             currentBasket.ConfirmScored();
             SetActiveBasket(currentBasket);
+        } else {
+            TryCreateStar(basket);
         }
         basket.BallCatched += OnBallCatched;
         basket.BallThrowed += OnBallThrowed;
         Baskets.Add(basket);
         return basket;
     }
+
+    private void TryCreateStar(Basket basket) {
+        if (starSpawnOneFor == Random.Range(1, starSpawnOneFor+1)) {
+            Instantiate(starPrefab, basket.transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity, basket.transform).Scored += Score;
+        }
+    }
+
+    private void Score(IScorable scorable) => score.Add(scorable);
 
     private void SetActiveBasket(Basket basket) {
         basket.SetBall(Ball);
@@ -86,6 +96,7 @@ public class BasketManager : MonoBehaviour {
     private void OnBallThrowed(Basket basket) {
         aim.AimUpdated -= basket.OnAiming;
         aim.AimReleased -= basket.ThrowBall;
+        BallSounds.PlaySound(SoundType.Throw);
         currentBasket = null;
         CanThrow = false;
     }
@@ -93,8 +104,9 @@ public class BasketManager : MonoBehaviour {
     private void OnBallCatched(Basket basket) {
         SetActiveBasket(basket);
         CanThrow = true;
-        score.Add(basket);
+        Score(basket);
         OnHigherBasketReached(NumberFromTop(basket));
+        BallSounds.PlaySound(SoundType.Net);
     }
 
     private int NumberFromTop(Basket basket) {

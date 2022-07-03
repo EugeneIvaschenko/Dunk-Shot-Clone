@@ -1,11 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIMediator : MonoBehaviour {
+    [Header("Global Menus")]
     [SerializeField] private Gameplay game;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject loseMenu;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private ColoredBackground background;
+    [Header("UI Objects")]
+    [SerializeField] private Image themeToggleImage;
+    [SerializeField] private Image soundsToggleImage;
 
     private GameObject currentMenu = null;
     private bool isInGame = false;
@@ -59,11 +65,11 @@ public class UIMediator : MonoBehaviour {
     public void OpenSettings() => ShowMenu(settingsMenu);
 
     public void ToggleDarkTheme() {
-
+        themeToggleImage.gameObject.SetActive(background.ToggleColor());
     }
 
     public void ToggleSounds() {
-
+        soundsToggleImage.gameObject.SetActive(BallSounds.SwitchVolume());
     }
 
     public void OpenSkinsMenu() {

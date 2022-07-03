@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Basket : MonoBehaviour, IScored {
+public class Basket : MonoBehaviour, IScorable {
     [SerializeField] private Transform markForBall;
     [SerializeField] private Collider2D catchCollider;
     [SerializeField] private NetCollider net;
@@ -10,6 +10,8 @@ public class Basket : MonoBehaviour, IScored {
     private Ball ball;
 
     public bool IsScored { get; private set; } = false;
+
+    public ScorableType ScorableType { get; } = ScorableType.Common;
 
     public event Action<Basket> BallThrowed;
     public event Action<Basket> BallCatched;
@@ -48,7 +50,5 @@ public class Basket : MonoBehaviour, IScored {
         ignoreCatching = false;
     }
 
-    public void ConfirmScored() {
-        IsScored = true;
-    }
+    public void ConfirmScored() => IsScored = true;
 }

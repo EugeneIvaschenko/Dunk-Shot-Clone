@@ -76,6 +76,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5766343029625839345}
   - component: {fileID: 5766343029625839346}
+  - component: {fileID: 324043762845902085}
   m_Layer: 6
   m_Name: RingCollider1
   m_TagString: Untagged
@@ -113,6 +114,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &324043762845902085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5766343029625839344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e6efad10e02fc4bb1f81e8b5586098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SoundType>k__BackingField: 2
 --- !u!1 &5766343029770235031
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +138,7 @@ GameObject:
   - component: {fileID: 5766343029770235016}
   - component: {fileID: 5766343029770235017}
   - component: {fileID: 2018025951743078127}
+  - component: {fileID: 6244153954588416362}
   m_Layer: 6
   m_Name: NetCollider
   m_TagString: Untagged
@@ -140,7 +155,7 @@ Transform:
   m_GameObject: {fileID: 5766343029770235031}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.009000014, y: -0.197, z: 0}
-  m_LocalScale: {x: 0.53000003, y: 0.09, z: 1}
+  m_LocalScale: {x: 0.53000003, y: 0.03, z: 1}
   m_Children: []
   m_Father: {fileID: 6826848686809251440}
   m_RootOrder: 5
@@ -183,6 +198,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc549d397655c0f4d83c07fd8564777c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6244153954588416362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5766343029770235031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e6efad10e02fc4bb1f81e8b5586098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SoundType>k__BackingField: 1
 --- !u!1 &5766343030047912813
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5766343030739620214}
   - component: {fileID: 5766343030739620215}
+  - component: {fileID: 6347882820972375840}
   m_Layer: 6
   m_Name: RingCollider2
   m_TagString: Untagged
@@ -359,6 +388,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6347882820972375840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5766343030739620213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e6efad10e02fc4bb1f81e8b5586098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SoundType>k__BackingField: 2
 --- !u!1 &5766343031118553586
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +412,7 @@ GameObject:
   - component: {fileID: 5766343031118553587}
   - component: {fileID: 5766343031118553589}
   - component: {fileID: 5766343031118553588}
+  - component: {fileID: 3678479663899089336}
   m_Layer: 6
   m_Name: Net
   m_TagString: Untagged
@@ -466,3 +509,16 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &3678479663899089336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5766343031118553586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e6efad10e02fc4bb1f81e8b5586098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SoundType>k__BackingField: 1

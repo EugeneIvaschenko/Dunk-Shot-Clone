@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -33,5 +34,11 @@ public class Ball : MonoBehaviour {
 
     public void DrawTrajectory(Vector2 direction) {
         if (tr) tr.DrawTrajectory(GetThrowForce(direction));
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.TryGetComponent(out Soundable component)) {
+            BallSounds.PlaySound(component.SoundType);
+        }
     }
 }
