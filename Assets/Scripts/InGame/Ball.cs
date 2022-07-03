@@ -6,6 +6,8 @@ public class Ball : MonoBehaviour {
     private Rigidbody2D rb;
     private TrajectoryRenderer tr;
 
+    public bool IsSimulated => rb.simulated;
+
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         rb.simulated = false;
@@ -18,13 +20,12 @@ public class Ball : MonoBehaviour {
         rb.velocity = GetThrowForce(direction);
     }
 
-    public Vector2 GetThrowForce(Vector2 direction) {
-        return direction * ThrowPower;
-    }
+    public Vector2 GetThrowForce(Vector2 direction) => direction * ThrowPower;
 
-    public void DeactivatePhysics() {
-        rb.simulated = false;
-    }
+    public void ActivatePhysics() => rb.simulated = true;
+
+    public void DeactivatePhysics() => rb.simulated = false;
+
 
     public void EraseTrajectory(Vector2 vector2) {
         if (tr) tr.EraseTrajectory();

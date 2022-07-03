@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Basket : MonoBehaviour {
+public class Basket : MonoBehaviour, IScored {
     [SerializeField] private Transform markForBall;
     [SerializeField] private Collider2D catchCollider;
     [SerializeField] private NetCollider net;
     private bool ignoreCatching = false;
     private Ball ball;
+
+    public bool IsScored { get; private set; } = false;
+
     public event Action<Basket> BallThrowed;
     public event Action<Basket> BallCatched;
 
@@ -43,5 +46,9 @@ public class Basket : MonoBehaviour {
         ignoreCatching = true;
         yield return new WaitForSeconds(0.2f);
         ignoreCatching = false;
+    }
+
+    public void ConfirmScored() {
+        IsScored = true;
     }
 }
