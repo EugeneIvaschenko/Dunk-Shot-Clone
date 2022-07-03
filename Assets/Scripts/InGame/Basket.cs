@@ -28,7 +28,10 @@ public class Basket : MonoBehaviour, IScorable {
     }
 
     public void ThrowBall(Vector2 force) {
-        if (!ball) return;
+        if (!ball || force.magnitude < Gameplay.MinThrowForce)
+            return;
+        force = Vector2.ClampMagnitude(force, Gameplay.MaxThrowForce);
+        Debug.Log(force.magnitude);
         ball.Throw(force);
         ball = null;
         StartCoroutine(TemporarilyIgnoreCatching());
@@ -40,7 +43,8 @@ public class Basket : MonoBehaviour, IScorable {
     }
 
     private void OnBallCatched() {
-        if (ignoreCatching || ball) return;
+        if (ignoreCatching || ball)
+            return;
         BallCatched?.Invoke(this);
     }
 

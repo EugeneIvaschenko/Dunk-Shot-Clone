@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -33,7 +32,14 @@ public class Ball : MonoBehaviour {
     }
 
     public void DrawTrajectory(Vector2 direction) {
-        if (tr) tr.DrawTrajectory(GetThrowForce(direction));
+        if (tr ) {
+            if (direction.magnitude < Gameplay.MinThrowForce) {
+                EraseTrajectory(direction);
+                return;
+            }
+            direction = Vector2.ClampMagnitude(direction, Gameplay.MaxThrowForce);
+            tr.DrawTrajectory(GetThrowForce(direction)); 
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {

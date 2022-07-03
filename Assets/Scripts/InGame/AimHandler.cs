@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class AimHandler : MonoBehaviour {
+public class AimHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler {
     [SerializeField, Min(0)] private float aimSensibility = 1;
 
     private bool isMouseHolded = false;
@@ -12,16 +13,12 @@ public class AimHandler : MonoBehaviour {
 
     private void Update() {
         if(BasketManager.CanThrow)
-            InputRead();
+            MouseRead();
     }
 
-    private void InputRead() {
-        if (!isMouseHolded && Input.GetMouseButtonDown(0)) {
-            StartAim();
-        } else if (isMouseHolded && Input.GetMouseButton(0)) {
+    private void MouseRead() {
+        if (isMouseHolded) {
             Aiming();
-        } else if (isMouseHolded && !Input.GetMouseButton(0)) {
-            ReleaseAim();
         }
     }
 
@@ -35,11 +32,28 @@ public class AimHandler : MonoBehaviour {
     }
 
     private void ReleaseAim() {
+        if(isMouseHolded) AimReleased?.Invoke(GetAimVector());
         isMouseHolded = false;
-        AimReleased?.Invoke(GetAimVector());
+    }
+
+    private void CancelAim() {
+        isMouseHolded = false;
+        AimReleased?.Invoke(Vector3.zero);
+    }
+
+    public void OnPointerDown(PointerEventData eventData) {
+        if (!isMouseHolded) StartAim();
+    }
+
+    public void OnPointerExit(PointerEventData eventData) {
+        CancelAim();
+    }
+
+    public void OnPointerUp(PointerEventData eventData) {
+        ReleaseAim();
     }
 
     private Vector2 GetAimVector() {
-        return (mouseDownPos - Input.mousePosition) / Screen.dpi * aimSensibility;
+        return (Camera.main.ScreenToWorldPoint(mouseDownPos) - Camera.main.ScreenToWorldPoint(Input.mousePosition)) * aimSensibility;
     }
 }

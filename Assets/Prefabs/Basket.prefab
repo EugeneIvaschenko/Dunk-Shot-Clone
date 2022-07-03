@@ -340,6 +340,8 @@ MonoBehaviour:
   markForBall: {fileID: 5766343029144199992}
   catchCollider: {fileID: 5766343029770235017}
   net: {fileID: 2018025951743078127}
+  minThrowForce: 1
+  maxThrowForce: 6
 --- !u!1 &5766343030739620213
 GameObject:
   m_ObjectHideFlags: 0

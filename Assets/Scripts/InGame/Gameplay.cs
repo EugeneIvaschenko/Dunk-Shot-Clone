@@ -8,10 +8,20 @@ public class Gameplay : MonoBehaviour {
     [SerializeField] private Ball ballPrefab;
     [SerializeField] private UIMediator mediator;
     [SerializeField] private float loseHeigth = 3f;
+    [SerializeField] private float minThrowForce = 1f;
+    [SerializeField] private float maxThrowForce = 6f;
+
     private Vector3 ballZoneScrollerStartPos;
     private Ball Ball;
 
-    private void Awake() => ballZoneScrollerStartPos = ballZoneScroller.transform.position;
+    public static float MinThrowForce { get; private set; }
+    public static float MaxThrowForce { get; private set; }
+
+    private void Awake() {
+        ballZoneScrollerStartPos = ballZoneScroller.transform.position;
+        MinThrowForce = minThrowForce;
+        MaxThrowForce = maxThrowForce;
+    }
 
     private void Update() {
         if (Ball && Ball.IsSimulated && (Ball.transform.position.y < basketManager.GetLowestBasket().transform.position.y - loseHeigth)) {
