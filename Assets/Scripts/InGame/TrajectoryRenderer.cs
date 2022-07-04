@@ -39,7 +39,7 @@ public class TrajectoryRenderer : MonoBehaviour {
         ContactFilter2D filter = new ContactFilter2D {
             layerMask = LayerMask.GetMask("Obstacles")
         };
-        float bounciness = (1 - rb.sharedMaterial.bounciness) / 1.3f + rb.sharedMaterial.bounciness; //crutch for bounciness simulation
+
         for (int i = 0; i < steps; i++) {
             moveStep += gravityAccel;
             moveStep *= drag;
@@ -47,7 +47,7 @@ public class TrajectoryRenderer : MonoBehaviour {
             rb.position = newPos;
             int hitCount = rb.Cast(moveStep, filter, hits, moveStep.magnitude);
             if (hitCount > 0) {
-                moveStep = Vector2.Reflect(moveStep, hits[0].normal) * bounciness;
+                moveStep = Vector2.Reflect(moveStep, hits[0].normal) * rb.sharedMaterial.bounciness;
                 
             }
 

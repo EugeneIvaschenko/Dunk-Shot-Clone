@@ -5,6 +5,7 @@ public class Ball : MonoBehaviour {
     [field: SerializeField] public float ThrowPower { get; private set; } = 2;
     private Rigidbody2D rb;
     private TrajectoryRenderer tr;
+    private SpriteRenderer sr;
 
     public bool IsSimulated => rb.simulated;
 
@@ -12,6 +13,8 @@ public class Ball : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         rb.simulated = false;
         tr = GetComponent<TrajectoryRenderer>();
+        sr = GetComponent<SpriteRenderer>();
+        sr.sprite = BallSkins.CurrentSkin;
     }
 
     public void Throw(Vector2 direction) {

@@ -8,6 +8,7 @@ public class UIMediator : MonoBehaviour {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject loseMenu;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject skinsMenu;
     [SerializeField] private ColoredBackground background;
     [Header("UI Objects")]
     [SerializeField] private Image themeToggleImage;
@@ -22,6 +23,7 @@ public class UIMediator : MonoBehaviour {
         pauseMenu.SetActive(false);
         loseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        skinsMenu.SetActive(false);
     }
 
     public void StartGame() {
@@ -73,7 +75,8 @@ public class UIMediator : MonoBehaviour {
     }
 
     public void OpenSkinsMenu() {
-
+        HideAndCloseGame();
+        ShowMenu(skinsMenu);
     }
 
     private void ShowMenu(GameObject menu) {

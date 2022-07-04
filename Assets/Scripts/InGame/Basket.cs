@@ -31,7 +31,6 @@ public class Basket : MonoBehaviour, IScorable {
         if (!ball || force.magnitude < Gameplay.MinThrowForce)
             return;
         force = Vector2.ClampMagnitude(force, Gameplay.MaxThrowForce);
-        Debug.Log(force.magnitude);
         ball.Throw(force);
         ball = null;
         StartCoroutine(TemporarilyIgnoreCatching());
