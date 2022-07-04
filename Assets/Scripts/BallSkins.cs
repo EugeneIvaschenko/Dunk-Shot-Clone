@@ -11,8 +11,8 @@ public class BallSkins : MonoBehaviour {
 
     private void Awake() {
         if(!instance) instance = this;
-        SetSkin(0);
         InitMenu();
+        SetSkin(0);
     }
 
     private void InitMenu() {

@@ -6,6 +6,8 @@ public class Basket : MonoBehaviour, IScorable {
     [SerializeField] private Transform markForBall;
     [SerializeField] private Collider2D catchCollider;
     [SerializeField] private NetCollider net;
+    [SerializeField] private GameObject[] walls;
+    [SerializeField] private float wallSpawnProbability = 0.1f;
     private bool ignoreCatching = false;
     private Ball ball;
 
@@ -18,6 +20,13 @@ public class Basket : MonoBehaviour, IScorable {
 
     private void Start() {
         net.BallCatched += OnBallCatched;
+        Debug.Log("Start");
+        if (UnityEngine.Random.Range(0f, 1f) < wallSpawnProbability) {
+            Debug.Log("Spawned");
+            GameObject wall = walls[UnityEngine.Random.Range(0, walls.Length)];
+            wall.transform.SetParent(null);
+            wall.SetActive(true);
+        }
     }
 
     public void SetBall(Ball b) {
@@ -54,4 +63,10 @@ public class Basket : MonoBehaviour, IScorable {
     }
 
     public void ConfirmScored() => IsScored = true;
+
+    private void OnDestroy() {
+        foreach(var wall in walls) {
+            Destroy(wall);
+        }
+    }
 }
